@@ -23,6 +23,12 @@
         </button>
     </div>
 
+    <div class="thumbtemplate" data-win-control="WinJS.Binding.Template">
+        <div class="item">
+            <img class="item-image" src="#" data-win-bind="src: backgroundImage; alt: title" />            
+        </div>
+    </div>
+
     <div class="itemtemplate" data-win-control="WinJS.Binding.Template">
         <div class="item">
             <img class="item-image" src="#" data-win-bind="src: backgroundImage; alt: title" />
@@ -42,18 +48,31 @@
             </h1>
         </header>
         <section aria-label="Main content" role="main">
-            <div class="groupeditemslist win-selectionstylefilled" aria-label="List of groups" data-win-control="WinJS.UI.ListView" data-win-options="{
-                    layout: {type: WinJS.UI.GridLayout, groupHeaderPosition: 'top'},
+            <div class="zoom win-selectionstylefilled" data-win-control="WinJS.UI.SemanticZoom">
+                <div id="zoomedInListView" class="groupeditemslist win-selectionstylefilled" aria-label="List of groups"
+                     data-win-control="WinJS.UI.ListView" data-win-options="{
+            layout: {type: WinJS.UI.GridLayout, groupHeaderPosition: 'top'},
+            selectionMode: 'none',
+            currentItem: {type: WinJS.UI.ObjectType.item, index: 0, hasFocus: true},
+            groupHeaderTemplate: select('.headertemplate'),
+            itemTemplate: select('.itemtemplate'),
+            itemDataSource: Data.items.dataSource,
+            groupDataSource: Data.groups.dataSource,
+            ongroupheaderinvoked: select('.pagecontrol').winControl.groupHeaderInvoked,
+            oniteminvoked: select('.pagecontrol').winControl.itemInvoked
+        }">
+                </div>
+                <div id="zoomedOutListView" class="thumbslist win-selectionstylefilled" aria-label="List of slides"
+                     data-win-control="WinJS.UI.ListView" data-win-options="{
+                    layout: {type: WinJS.UI.GridLayout},
                     selectionMode: 'none',
-                    currentItem: {type: WinJS.UI.ObjectType.item, index: 0, hasFocus: true},
-                    groupDataSource: Data.groups.dataSource,
-                    groupHeaderTemplate: select('.headertemplate'),
-                    itemDataSource: Data.items.dataSource,
-                    itemTemplate: select('.itemtemplate'),
-                    ongroupheaderinvoked: select('.pagecontrol').winControl.groupHeaderInvoked,
-                    oniteminvoked: select('.pagecontrol').winControl.itemInvoked
-                }">
-            </div>
+                    currentItem: {type: WinJS.UI.ObjectType.group, index: 0, hasFocus: true},
+                    itemDataSource: Data.groups.dataSource,
+                    itemTemplate: select('.thumbtemplate'),
+                    oniteminvoked: select('.pagecontrol').winControl.zoomHeaderInvoked
+                 }">
+                </div>
+            </div>    
         </section>
     </div>
 </body>

@@ -25,18 +25,21 @@
         </header>
         <section id="mainContent" aria-label="Main content" role="main" class="stretch">
             <div id="slideContainer" tabindex="-1" class="stretch-horizontal"></div>
-            <div class="stretch-horizontal">
-                <button id="previousSlide"> &lt; </button>
+            <div id="bottomNavigation" class="stretch-horizontal">
+                <button id="previousSlide" class="animated fadeOut"> &lt; </button>
                 <span class="win-type-small indent-50"><a href="https://github.com/JeremyLikness/RebuildWinJS" target="_blank">https://github.com/JeremyLikness/RebuildWinJS</a>
                 &nbsp;&nbsp;<span id="curSlide"></span></span>   
-                <button id="nextSlide" class="align-right"> &gt; </button>
+                <button id="nextSlide" class="align-right animated fadeOut"> &gt; </button>
             </div>
             <p class="spacer-10"/>
             <div class="stretch-horizontal">
                 <a href="http://www.wintellect.com/" class="align-left" target="_blank"><img src="/images/winlogobl.gif" class="v-middle" /></a>
                 <a href="http://www.wintellectnow.com/" class="align-right" target="_blank"><img src="/images/winnow-logo-cropped.png" class="v-middle" /></a>
             </div>
-        </section>        
+        </section> 
+        <div id="createAppBar" data-win-control="WinJS.UI.AppBar">
+            <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id: 'cmdHome', label: 'Home', icon:'home'}"></button>
+        </div>       
     </div>
 </body>
 </html>

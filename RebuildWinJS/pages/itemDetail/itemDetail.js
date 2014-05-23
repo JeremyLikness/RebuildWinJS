@@ -3,7 +3,8 @@
 
     var nav = WinJS.Navigation,
         ui = WinJS.UI,
-        session = WinJS.Application.sessionState;
+        session = WinJS.Application.sessionState,
+        goHome = function () { nav.navigate("/pages/groupedItems/groupedItems.html", {}) };
     
     WinJS.UI.Pages.define("/pages/itemDetail/itemDetail.html", {        
 
@@ -21,10 +22,24 @@
                 nextButton = element.querySelector("#nextSlide"), 
                 previousButton = element.querySelector("#previousSlide"),
                 slideContainer = element.querySelector("#slideContainer"),
-                currentSlideText = element.querySelector("#curSlide");
+                currentSlideText = element.querySelector("#curSlide"),
+                bottomNavigation = element.querySelector("#bottomNavigation"),
+                homeCmd = element.querySelector("#cmdHome");
 
             session.nextItem = Data.getNextItem(options.item);
-            session.previousItem = Data.getPreviousItem(options.item),
+            session.previousItem = Data.getPreviousItem(options.item);
+
+            homeCmd.addEventListener("click", goHome, false);
+
+            bottomNavigation.onmouseenter = function () {
+                nextButton.className = "align-right animated fadeIn";
+                previousButton.className = "animated fadeIn";
+            };
+
+            bottomNavigation.onmouseleave = function () {
+                nextButton.className = "align-right animated fadeOut";
+                previousButton.className = "animated fadeOut";
+            };
 
             element.querySelector(".titlearea .pagetitle").textContent = item.title;
 
@@ -68,6 +83,12 @@
 
         _keyUp: function (evt) {
             if (evt.handled) {
+                return;
+            }
+
+            if (evt.keyCode === 38) {
+                evt.handled = true;
+                goHome();
                 return;
             }
 

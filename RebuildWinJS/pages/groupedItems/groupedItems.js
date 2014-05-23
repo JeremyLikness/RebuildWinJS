@@ -10,17 +10,30 @@
         init: function (element, options) {
             this.groupHeaderInvoked = ui.eventHandler(this._groupHeaderInvoked.bind(this));
             this.itemInvoked = ui.eventHandler(this._itemInvoked.bind(this));
+            this.zoomHeaderInvoked = ui.eventHandler(this._zoomHeaderInvoked.bind(this));
         },
 
         // This function is called whenever a user navigates to this page.
         ready: function (element, options) {
-            session.currentSlide = session.nextItem = session.previousItem = null;
+            session.currentSlide = session.nextItem = session.previousItem = null;                                   
         },
 
         updateLayout: function (element) {
             /// <param name="element" domElement="true" />
 
             // TODO: Respond to changes in layout.
+        },
+
+        _zoomHeaderInvoked: function (args) {
+            var group = Data.groups.getAt(args.detail.itemIndex);
+
+            // give the semantic zoom control time to collapse before
+            // navigating 
+            (function (group) {
+                setTimeout(function () {
+                    nav.navigate("/pages/groupDetail/groupDetail.html", { groupKey: group.key });
+                }, 0);
+            })(group);            
         },
 
         _groupHeaderInvoked: function (args) {

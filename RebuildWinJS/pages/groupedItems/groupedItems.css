@@ -10,6 +10,33 @@
     z-index: 0;
 }
 
+.groupeditemspage .thumbslist {
+    height: 100%;
+    position: relative;
+    width: 100%;
+    z-index: 0;
+}
+
+.groupeditemspage .zoom {
+    height: 100%;
+    position: relative;
+    width: 100%;
+    z-index: 0;
+}
+
+.groupeditemspage .thumbslist .win-horizontal.win-viewport .win-surface {
+        margin-bottom: 60px;
+        margin-left: 45px;
+        margin-right: 115px;
+        margin-top: 128px;
+    }
+
+    .groupeditemspage .thumbslist.win-rtl .win-horizontal.win-viewport .win-surface {
+        margin-left: 115px;
+        margin-right: 45px;
+    }
+
+
     /* This selector is used to prevent ui-dark/light.css from overwriting changes
        to .win-surface. */
     .groupeditemspage .groupeditemslist .win-horizontal.win-viewport .win-surface {
@@ -73,6 +100,20 @@
         height: 250px;
         width: 250px;
     }
+
+    .groupeditemspage .thumbslist .item {
+        -ms-grid-columns: 1fr;
+        -ms-grid-rows: 1fr 90px;
+        display: -ms-grid;
+        height: 300px;
+        width: 300px;
+        margin: 10px;
+    }
+
+    .groupeditemspage .thumbslist .item .item-image {
+            -ms-grid-row-span: 2;
+        }
+
 
         .groupeditemspage .groupeditemslist .item .item-image {
             -ms-grid-row-span: 2;
