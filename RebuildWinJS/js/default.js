@@ -26,7 +26,7 @@
             ui.disableAnimations();
             var p = ui.processAll().then(function () {
                 document.body.onkeyup = function (e) {
-                    WinJS.Application.queueEvent({ type: 'keyUpTriggered', keyCode: e.keyCode });
+                    WinJS.Application.queueEvent({ type: 'keyUpTriggered', keyCode: e.keyCode, handled: false });
                 };
                 return nav.navigate(nav.location || Application.navigator.home, nav.state);
             }).then(function () {

@@ -20,7 +20,8 @@
             var item = Data.resolveItemReference(options.item), 
                 nextButton = element.querySelector("#nextSlide"), 
                 previousButton = element.querySelector("#previousSlide"),
-                slideContainer = element.querySelector("#slideContainer");
+                slideContainer = element.querySelector("#slideContainer"),
+                currentSlideText = element.querySelector("#curSlide");
 
             session.nextItem = Data.getNextItem(options.item);
             session.previousItem = Data.getPreviousItem(options.item),
@@ -29,7 +30,8 @@
 
             if (slideContainer && item.slide) {
                 var htmlControl = new WinJS.UI.HtmlControl(slideContainer, { uri: 'slides/' + item.slide });
-                session.currentSlide = this.currentSlide = item.slide; 
+                session.currentSlide = this.currentSlide = item.slide;
+                currentSlideText.innerHTML = this.currentSlide;
                 WinJS.UI.processAll().then(function () {
                     (function (sc) {
                         setTimeout(function () {
@@ -40,6 +42,7 @@
             }
             else {
                 session.currentSlide = this.currentSlide = null;
+                currentSlideText.innerHTML = '';
             }
             
             if (session.nextItem) {
@@ -64,10 +67,16 @@
         },
 
         _keyUp: function (evt) {
+            if (evt.handled) {
+                return;
+            }
+
             if (evt.keyCode === 32 && session.nextItem) { // space to advance
+                evt.handled = true;
                 this._advanceSlide();
             }
             else if (evt.keyCode === 8 && session.previousItem) { // BACKSPACE to return to previous slide
+                evt.handled = true;
                 this._revertSlide();
             }
         },
