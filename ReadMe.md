@@ -14,6 +14,9 @@ WinJS. Visit the [WinJS online](https://github.com/winjs/winjs) site for the lat
 
 Follow me [@JeremyLikness](http://www.twitter.com/JeremyLikness) and visit my [blog](http://csharperimage.jeremylikness.com/) to stay current with the latest trends in enterprise app development!
 
+# Web App 
+One of the benefits you'll read about in the presentation to WinJS is that Microsoft has released an [open source version](https://github.com/winjs/winjs). After you work with this app locally, be sure to check out the [web app version](https://github.com/JeremyLikness/RebuildWinJSWeb) that can run in any browser.
+
 # Build re//build WinJS
 In order to build //rebuild WinJS, ensure that you have [git](http://git-scm.com/downloads) installed.
 
