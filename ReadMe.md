@@ -1,5 +1,7 @@
 re//build WinJS
 ====
+![No longer maintained](https://img.shields.io/maintenance/no/2020)
+
 An interactive slide deck presenting the latest changes to the WinJS library.
 
 # Notes 
